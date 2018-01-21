@@ -1,0 +1,18 @@
+---
+- name: Check nodejs distribution repo already added
+  stat:
+    path: /etc/apt/sources.list.d/nodesource.list
+  register: nodejs_dist_repo_result
+
+- name: Add node.js distribution repository
+  shell: curl -sL https://deb.nodesource.com/setup_{{ nodejs.version }}.x | bash -
+  become: yes
+  when:
+    - nodejs_dist_repo_result.stat.exists == False
+
+- name: Install node.js
+  apt:
+    name: nodejs
+    update_cache: yes
+    state: latest
+

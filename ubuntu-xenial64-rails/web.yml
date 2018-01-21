@@ -10,5 +10,8 @@
       default_ruby: 2.4.2
       rubies:
         - version: 2.4.2
+    nodejs:
+      version: 9
   roles:
     - galaxy/zzet.rbenv
+    - roles/nodejs
