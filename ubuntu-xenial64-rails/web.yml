@@ -1,0 +1,14 @@
+---
+- hosts: web
+  become: yes
+  become_method: sudo
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    rbenv:
+      env: system
+      version: v1.1.1
+      default_ruby: 2.4.2
+      rubies:
+        - version: 2.4.2
+  roles:
+    - galaxy/zzet.rbenv

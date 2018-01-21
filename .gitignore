@@ -1,0 +1,5 @@
+.vagrant
+*.log
+*.retry
+*/galaxy
+py3-ansible
