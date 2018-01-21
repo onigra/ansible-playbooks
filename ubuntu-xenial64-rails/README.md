@@ -20,19 +20,17 @@ source ./py3-ansible/bin/activate
 
 # playbook実行時に出るDEPRECATION WARNINGはgalaxyのplaybookのせい
 
-- https://github.com/zzet/ansible-rbenv-role
-
-```
-[DEPRECATION WARNING]: The use of 'include' for tasks has been deprecated. Use 'import_tasks' for static inclusions or 'include_tasks' for dynamic inclusions. This feature will be removed in a future release. Deprecation warnings can be
-disabled by setting deprecation_warnings=False in ansible.cfg.
-[DEPRECATION WARNING]: include is kept for backwards compatibility but usage is discouraged. The module documentation details page may explain more about this rationale.. This feature will be removed in a future release. Deprecation
-warnings can be disabled by setting deprecation_warnings=False in ansible.cfg
-```
+- https://github.com/geerlingguy/ansible-role-mysql/pull/243
 
 # usage
 
+- `.secrets` 配下にansible vaultで暗号化したファイルが置いてある想定になっている
+  - 環境ごとのファイルが置いてあり、 `--extra-vars` で `secret_env` という変数名からファイル名を指定する想定
+  - 例えば `.secrets/dev.yml` がある場合、 `--extra-vars "secret_env=dev"` となる
+
 ```sh
-vagrant up
+vagran up
 source ./py3-ansible/bin/activate
-ansible-playbook -i inventory/dev.yml site.yml
+ansible-playbook -i inventory/dev.yml site.yml --extra-vars "secret_env=dev"
 ```
+
