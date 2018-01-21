@@ -1,0 +1,23 @@
+---
+- name: Install MySQL dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - libmysqlclient-dev
+    - python3-pip
+
+- name: Upgrade pip
+  pip:
+    name: pip
+    state: present
+    executable: pip3
+    extra_args: --upgrade
+
+- name: Install mysqlclient
+  pip:
+    name: mysqlclient
+    state: present
+    executable: pip3
+

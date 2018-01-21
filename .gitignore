@@ -3,3 +3,4 @@
 *.retry
 */galaxy
 py3-ansible
+.secrets
