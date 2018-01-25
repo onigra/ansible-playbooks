@@ -1,3 +1,5 @@
 - src: zzet.rbenv
 - src: geerlingguy.mysql
 - src: DavidWittman.redis
+- src: geerlingguy.git
+
