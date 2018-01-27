@@ -31,6 +31,7 @@
     git_install_from_source: true
     git_install_from_source_force_update: true
     git_version: 2.16.1
+    user_local_ssh_key_path: "{{ deploy.ssh_pubkey_path }}"
   roles:
     - galaxy/geerlingguy.git
     - galaxy/zzet.rbenv
@@ -39,4 +40,5 @@
     - { role: galaxy/geerlingguy.mysql, become: yes }
     - galaxy/DavidWittman.redis
     - galaxy/cmprescott.chrome
+    - galaxy/nickjj.user
 
