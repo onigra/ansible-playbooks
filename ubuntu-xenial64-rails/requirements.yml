@@ -2,7 +2,6 @@
 - src: geerlingguy.mysql
 - src: DavidWittman.redis
 - src: geerlingguy.git
-- src: cmprescott.chrome
 - src: nickjj.user
 - src: ocha.yarn
 - src: https://github.com/DrTom/ansible-role-chromedriver

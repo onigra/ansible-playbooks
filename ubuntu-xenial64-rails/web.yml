@@ -40,7 +40,6 @@
     - { role: roles/mysql-dependencies, become: yes }
     - { role: galaxy/geerlingguy.mysql, become: yes }
     - galaxy/DavidWittman.redis
-    - galaxy/cmprescott.chrome
     - galaxy/nickjj.user
     - roles/application-deploy-path
     - roles/bundler
