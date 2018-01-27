@@ -32,6 +32,7 @@
     git_install_from_source_force_update: true
     git_version: 2.16.1
     user_local_ssh_key_path: "{{ deploy.ssh_pubkey_path }}"
+    chromedriver_version: 2.35
   roles:
     - galaxy/geerlingguy.git
     - galaxy/zzet.rbenv
@@ -44,4 +45,5 @@
     - roles/application-deploy-path
     - roles/bundler
     - galaxy/ocha.yarn
+    - galaxy/chrome-driver
 
