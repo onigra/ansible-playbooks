@@ -37,8 +37,8 @@
     - galaxy/geerlingguy.git
     - galaxy/zzet.rbenv
     - roles/nodejs
-    - { role: roles/mysql-dependencies, become: yes }
-    - { role: galaxy/geerlingguy.mysql, become: yes }
+    - roles/mysql-dependencies
+    - galaxy/geerlingguy.mysql
     - galaxy/DavidWittman.redis
     - galaxy/nickjj.user
     - roles/application-deploy-path
