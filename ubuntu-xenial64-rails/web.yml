@@ -43,4 +43,5 @@
     - galaxy/nickjj.user
     - roles/application-deploy-path
     - roles/bundler
+    - galaxy/ocha.yarn
 
