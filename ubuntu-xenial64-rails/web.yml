@@ -38,4 +38,5 @@
     - { role: roles/mysql-dependencies, become: yes }
     - { role: galaxy/geerlingguy.mysql, become: yes }
     - galaxy/DavidWittman.redis
+    - galaxy/cmprescott.chrome
 
