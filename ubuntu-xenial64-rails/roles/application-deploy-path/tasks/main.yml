@@ -1,0 +1,9 @@
+---
+- name: Create application deploy directory
+  file:
+    path: "/var/www/{{ application.name }}"
+    state: directory
+    owner: "{{ application.deploy_user }}"
+    group: "{{ application.deploy_user }}"
+    mode: 0755
+
