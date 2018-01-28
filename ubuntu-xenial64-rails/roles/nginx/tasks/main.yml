@@ -1,0 +1,70 @@
+---
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - build-essential
+    - libpcre3
+    - libpcre3-dev
+    - libssl-dev
+    - libgd-dev
+
+- name: Download and unpack nginx source
+  unarchive:
+    src: https://nginx.org/download/nginx-{{ nginx.version }}.tar.gz
+    dest: /tmp
+    owner: root
+    group: root
+    remote_src: yes
+
+- name: Compile nginx
+  shell: >
+    ./configure {{ nginx.configure_flags | join(" ") }} &&
+    make &&
+    make install
+  args:
+    chdir: /tmp/nginx-{{ nginx.version }}
+
+- name: Create nginx user
+  user:
+    name: nginx
+    home: /var/run/nginx
+    shell: /bin/false
+    system: yes
+
+- name: Create nginx cache directory
+  file:
+    path: /var/cache/nginx/cache
+    state: directory
+    owner: nginx
+    group: nginx
+    mode: 0755
+
+- name: Create nginx cache directory
+  file:
+    path: /var/cache/nginx/tmp
+    state: directory
+    owner: nginx
+    group: nginx
+    mode: 0755
+
+- name: Upload systemd service file
+  copy:
+    src: nginx.service
+    dest: /lib/systemd/system/nginx.service
+    mode: 0644
+
+- name: Upload nginx.conf
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    mode: 0644
+
+- name: Register nginx as a service
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+
