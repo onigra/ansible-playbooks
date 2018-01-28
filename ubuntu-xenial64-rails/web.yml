@@ -36,13 +36,13 @@
   roles:
     - galaxy/geerlingguy.git
     - galaxy/zzet.rbenv
+    - roles/bundler
     - roles/nodejs
+    - galaxy/ocha.yarn
+    - galaxy/chrome-driver
     - roles/mysql-dependencies
     - galaxy/geerlingguy.mysql
     - galaxy/DavidWittman.redis
     - galaxy/nickjj.user
     - roles/application-deploy-path
-    - roles/bundler
-    - galaxy/ocha.yarn
-    - galaxy/chrome-driver
 
