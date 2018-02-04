@@ -1,0 +1,17 @@
+---
+- name: Upload environment variables file
+  template:
+    src: env
+    dest: /home/{{ application.deploy_user }}/.env
+    owner: "{{ application.deploy_user }}"
+    group: "{{ application.deploy_user }}"
+    mode: 0644
+
+- name: Modify
+  copy:
+    src: bashrc
+    dest: /home/{{ application.deploy_user }}/.bashrc
+    owner: "{{ application.deploy_user }}"
+    group: "{{ application.deploy_user }}"
+    mode: 0644
+

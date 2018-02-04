@@ -68,4 +68,5 @@
     - roles/application-deploy-path
     - roles/geoip
     - roles/nginx
+    - roles/environment-variables
 
