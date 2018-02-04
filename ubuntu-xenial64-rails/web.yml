@@ -36,8 +36,8 @@
     nginx:
       version: 1.13.8
       configure_flags:
-        - "--user=nginx"
-        - "--group=nginx"
+        - "--user=www-data"
+        - "--group=www-data"
         - "--prefix=/etc/nginx"
         - "--sbin-path=/usr/sbin/nginx"
         - "--conf-path=/etc/nginx/nginx.conf"

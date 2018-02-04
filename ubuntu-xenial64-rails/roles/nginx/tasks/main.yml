@@ -27,27 +27,20 @@
   args:
     chdir: /tmp/nginx-{{ nginx.version }}
 
-- name: Create nginx user
-  user:
-    name: nginx
-    home: /var/run/nginx
-    shell: /bin/false
-    system: yes
-
 - name: Create nginx cache directory
   file:
     path: /var/cache/nginx/cache
     state: directory
-    owner: nginx
-    group: nginx
+    owner: www-data
+    group: www-data
     mode: 0755
 
 - name: Create nginx cache directory
   file:
     path: /var/cache/nginx/tmp
     state: directory
-    owner: nginx
-    group: nginx
+    owner: www-data
+    group: www-data
     mode: 0755
 
 - name: Upload systemd service file
