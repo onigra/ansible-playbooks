@@ -1,4 +1,9 @@
 ---
+- name: Check nginx already installed
+  stat:
+    path: /lib/systemd/system/nginx.service
+  register: nginx_stat_result
+
 - name: Install dependencies
   apt:
     name: "{{ item }}"
@@ -10,6 +15,8 @@
     - libpcre3-dev
     - libssl-dev
     - libgd-dev
+  when:
+    - nginx_stat_result.stat.exists == False
 
 - name: Download and unpack nginx source
   unarchive:
@@ -18,6 +25,8 @@
     owner: root
     group: root
     remote_src: yes
+  when:
+    - nginx_stat_result.stat.exists == False
 
 - name: Compile nginx
   shell: >
@@ -26,6 +35,8 @@
     make install
   args:
     chdir: /tmp/nginx-{{ nginx.version }}
+  when:
+    - nginx_stat_result.stat.exists == False
 
 - name: Create nginx cache directory
   file:
@@ -34,6 +45,8 @@
     owner: www-data
     group: www-data
     mode: 0755
+  when:
+    - nginx_stat_result.stat.exists == False
 
 - name: Create nginx cache directory
   file:
@@ -42,22 +55,30 @@
     owner: www-data
     group: www-data
     mode: 0755
+  when:
+    - nginx_stat_result.stat.exists == False
 
 - name: Upload systemd service file
   copy:
     src: nginx.service
     dest: /lib/systemd/system/nginx.service
     mode: 0644
+  when:
+    - nginx_stat_result.stat.exists == False
 
 - name: Upload nginx.conf
   template:
     src: nginx.conf.j2
     dest: /etc/nginx/nginx.conf
     mode: 0644
+  when:
+    - nginx_stat_result.stat.exists == False
 
 - name: Register nginx as a service
   systemd:
     name: nginx
     state: started
     enabled: yes
+  when:
+    - nginx_stat_result.stat.exists == False
 
