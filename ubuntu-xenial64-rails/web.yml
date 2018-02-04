@@ -57,6 +57,7 @@
         - "--with-ipv6"
   roles:
     - galaxy/geerlingguy.git
+    - roles/remove-git-source
     - galaxy/zzet.rbenv
     - roles/bundler
     - roles/nodejs
