@@ -1,0 +1,12 @@
+- name: Upload systemd service file
+  template:
+    src: sidekiq.service.j2
+    dest: /lib/systemd/system/sidekiq.service
+    mode: 0644
+
+- name: Register unicorn as a service
+  systemd:
+    name: sidekiq
+    state: stopped
+    enabled: yes
+
