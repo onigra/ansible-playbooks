@@ -70,5 +70,8 @@
     - roles/application-deploy-path
     - roles/geoip
     - roles/nginx
+    - roles/unicorn
+    - roles/sidekiq
+    - roles/sudoers
     - roles/environment-variables
 
