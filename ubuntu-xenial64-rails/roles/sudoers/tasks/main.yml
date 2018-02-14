@@ -4,8 +4,8 @@
     dest: /etc/sudoers.d/{{ application.deploy_user }}
     insertbefore: BOF
     content: |
-      Cmnd_Alias UNICORN = /bin/systemctl start unicorn.service, /bin/systemctl stop unicorn.service, /bin/systemctl reload unicorn.service, /bin/systemctl status unicorn.service
-      Cmnd_Alias SIDEKIQ = /bin/systemctl start sidekiq.service, /bin/systemctl stop sidekiq.service, /bin/systemctl status sidekiq.service
+      Cmnd_Alias UNICORN = /bin/systemctl start unicorn.service, /bin/systemctl stop unicorn.service, /bin/systemctl reload unicorn.service, /bin/systemctl status unicorn.service, /bin/systemctl is-active unicorn.service
+      Cmnd_Alias SIDEKIQ = /bin/systemctl start sidekiq.service, /bin/systemctl stop sidekiq.service, /bin/systemctl status sidekiq.service, /bin/systemctl is-active sidekiq.service
 
 - name: Edit deploy sudoers
   lineinfile:
