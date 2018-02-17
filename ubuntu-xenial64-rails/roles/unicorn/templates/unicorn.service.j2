@@ -7,9 +7,8 @@ PIDFile=/var/www/{{ application.name }}/current/tmp/pids/unicorn.pid
 User=deploy
 SyslogIdentifier=unicorn
 Restart=always
+EnvironmentFile=/etc/systemd/user/{{ application.deploy_user }}/env
 Environment=RAILS_ENV={{ application.environment }}
-Environment=GOVERNMENT_COLLECTION_DATABASE_PASSWORD={{ mysql.application_user_password }}
-Environment=SECRET_KEY_BASE={{ application.secret_key_base }}
 
 ExecStart=/usr/local/rbenv/shims/bundle exec unicorn -c /var/www/{{ application.name }}/current/config/unicorn/{{ application.environment }}.rb -E {{ application.environment }} -D
 ExecStop=/bin/kill -s QUIT $MAINPID

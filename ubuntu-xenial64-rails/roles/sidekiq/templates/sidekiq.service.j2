@@ -17,9 +17,8 @@ SyslogIdentifier=sidekiq
 StandardOutput=syslog
 StandardError=syslog
 
+EnvironmentFile=/etc/systemd/user/{{ application.deploy_user }}/env
 Environment=RAILS_ENV={{ application.environment }}
-Environment=GOVERNMENT_COLLECTION_DATABASE_PASSWORD={{ mysql.application_user_password }}
-Environment=SECRET_KEY_BASE={{ application.secret_key_base }}
 
 ExecStart=/usr/local/rbenv/shims/bundle exec sidekiq -e {{ application.environment }} -C /var/www/{{ application.name }}/current/config/sidekiq.yml
 ExecStop=/usr/local/rbenv/shims/bundle exec sidekiqctl stop $MAINPID 10
