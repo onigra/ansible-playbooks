@@ -1,2 +1,0 @@
-export GOVERNMENT_COLLECTION_DATABASE_PASSWORD={{ mysql.application_user_password }}
-export SECRET_KEY_BASE={{ application.secret_key_base }}

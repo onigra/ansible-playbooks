@@ -9,9 +9,25 @@
 
 - name: Upload environment variables file
   template:
-    src: env
+    src: systemd_env
     dest: /etc/systemd/user/{{ application.deploy_user }}/env
     owner: root
     group: root
+    mode: 0644
+
+- name: Upload environment variables file to deploy user home dir
+  template:
+    src: user_env
+    dest: /home/{{ application.deploy_user }}/.env
+    owner: "{{ application.deploy_user }}"
+    group: "{{ application.deploy_user }}"
+    mode: 0644
+
+- name: Modify deploy user bashrc
+  copy:
+    src: bashrc
+    dest: /home/{{ application.deploy_user }}/.bashrc
+    owner: "{{ application.deploy_user }}"
+    group: "{{ application.deploy_user }}"
     mode: 0644
 
