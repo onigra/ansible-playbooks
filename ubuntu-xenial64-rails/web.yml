@@ -56,6 +56,7 @@
         - "--with-http_gunzip_module"
         - "--with-ipv6"
   roles:
+    - roles/apt
     - galaxy/geerlingguy.git
     - roles/remove-git-source
     - galaxy/zzet.rbenv
