@@ -98,7 +98,7 @@ http {
 
     # assets, media
     location ~ ^/assets/ {
-      root /var/www/{{ application.name }};
+      root /var/www/{{ application.name }}/current/public;
       expires 7d;
       access_log off;
     }
