@@ -1,0 +1,78 @@
+---
+- hosts: web
+  become: yes
+  become_method: sudo
+  vars_files:
+    - ".secrets/{{ secret_env }}.yml"
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    rbenv:
+      env: system
+      version: v1.1.1
+      default_ruby: 2.4.2
+      rubies:
+        - version: 2.4.2
+    nodejs:
+      version: 9
+    mysql_root_password: "{{ mysql.root_password }}"
+    mysql_databases:
+      - name: "{{ mysql.application_database }}"
+        encoding: utf8mb4
+        collation: utf8mb4_bin
+    mysql_users:
+      - name: "{{ mysql.application_username }}"
+        host: "%"
+        password: "{{ mysql.application_user_password }}"
+        priv: "{{ mysql.application_database }}.*:ALL"
+    redis_bind: 127.0.0.1
+    redis_version: 4.0.7
+    redis_verify_checksum: true
+    redis_checksum: "sha256:1bba546d44fb40e1fd8be1a15e1a9cc6484bceeea0bbd52919eebc656661ecd1"
+    git_install_from_source: true
+    git_install_from_source_force_update: true
+    git_version: 2.16.1
+    workspace: /tmp
+    user_local_ssh_key_path: "{{ deploy.ssh_pubkey_path }}"
+    chromedriver_version: 2.35
+    nginx:
+      version: 1.13.8
+      configure_flags:
+        - "--user=www-data"
+        - "--group=www-data"
+        - "--prefix=/etc/nginx"
+        - "--sbin-path=/usr/sbin/nginx"
+        - "--conf-path=/etc/nginx/nginx.conf"
+        - "--error-log-path=/var/log/nginx/error.log"
+        - "--pid-path=/run/nginx.pid"
+        - "--lock-path=/run/nginx.lock"
+        - "--http-log-path=/var/log/nginx/access.log"
+        - "--with-http_realip_module"
+        - "--with-http_addition_module"
+        - "--with-http_image_filter_module"
+        - "--with-http_geoip_module"
+        - "--with-http_ssl_module"
+        - "--with-http_v2_module"
+        - "--with-http_gzip_static_module"
+        - "--with-http_gunzip_module"
+        - "--with-ipv6"
+  roles:
+    - roles/apt
+    - galaxy/geerlingguy.git
+    - roles/remove-git-source
+    - galaxy/zzet.rbenv
+    - roles/bundler
+    - roles/nodejs
+    - galaxy/ocha.yarn
+    - galaxy/chrome-driver
+    - roles/mysql-dependencies
+    - galaxy/geerlingguy.mysql
+    - galaxy/DavidWittman.redis
+    - galaxy/nickjj.user
+    - roles/application-deploy-path
+    - roles/geoip
+    - roles/nginx
+    - roles/unicorn
+    - roles/sidekiq
+    - roles/sudoers
+    - roles/environment-variables
+
