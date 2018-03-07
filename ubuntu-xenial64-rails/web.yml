@@ -50,6 +50,7 @@
     - roles/nodejs
     - galaxy/ocha.yarn
     - galaxy/chrome-driver
+    - roles/mysql-dependencies
     - galaxy/nickjj.user
     - roles/application-deploy-path
     - roles/geoip
