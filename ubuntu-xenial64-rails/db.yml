@@ -17,5 +17,6 @@
         password: "{{ mysql.application_user_password }}"
         priv: "{{ mysql.application_database }}.*:ALL"
   roles:
+    - roles/apt
     - roles/mysql-dependencies
     - galaxy/geerlingguy.mysql
