@@ -1,0 +1,4 @@
+export {{ application.database_host_env_name }}={{ application.database_host }}
+export {{ application.database_password_env_name }}={{ mysql.application_user_password }}
+export {{ application.redis_host_env_name }}={{ application.redis_host }}
+export SECRET_KEY_BASE={{ application.secret_key_base }}

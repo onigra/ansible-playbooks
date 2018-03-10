@@ -1,0 +1,4 @@
+{{ application.database_host_env_name }}={{ application.database_host }}
+{{ application.database_password_env_name }}={{ mysql.application_user_password }}
+{{ application.redis_host_env_name }}={{ application.redis_host }}
+SECRET_KEY_BASE={{ application.secret_key_base }}
