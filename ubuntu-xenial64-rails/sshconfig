@@ -1,4 +1,4 @@
-Host web
+Host 192.168.33.10
   HostName 192.168.33.10
   User vagrant
   Port 22
@@ -9,7 +9,7 @@ Host web
   IdentitiesOnly yes
   LogLevel FATAL
 
-Host db
+Host 192.168.33.11
   HostName 192.168.33.11
   User vagrant
   Port 22
@@ -20,7 +20,7 @@ Host db
   IdentitiesOnly yes
   LogLevel FATAL
 
-Host redis
+Host 192.168.33.12
   HostName 192.168.33.12
   User vagrant
   Port 22
