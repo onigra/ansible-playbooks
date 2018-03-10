@@ -59,6 +59,6 @@ vagrant up
 - execute playbook
 
 ```sh
-ansible-playbook -i inventory/split.yml playbooks/split.yml --extra-vars "secret_env=split"
+ansible-playbook -i inventory/split.ini playbooks/split.yml --extra-vars "secret_env=split"
 ```
 
