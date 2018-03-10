@@ -1,0 +1,33 @@
+Host web
+  HostName 192.168.33.10
+  User vagrant
+  Port 22
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile .vagrant/machines/db/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
+
+Host db
+  HostName 192.168.33.11
+  User vagrant
+  Port 22
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile .vagrant/machines/db/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
+
+Host redis
+  HostName 192.168.33.12
+  User vagrant
+  Port 22
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile .vagrant/machines/redis/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
+
