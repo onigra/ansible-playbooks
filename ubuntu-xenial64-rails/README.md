@@ -28,9 +28,8 @@ source ./py3-ansible/bin/activate
   - 環境ごとのファイルが置いてあり、 `--extra-vars` で `secret_env` という変数名からファイル名を指定する想定
   - 例えば `.secrets/dev.yml` がある場合、 `--extra-vars "secret_env=dev"` となる
 
-```sh
-vagran up
-source ./py3-ansible/bin/activate
-ansible-playbook -i inventory/dev.yml site.yml --extra-vars "secret_env=dev"
-```
+## all-in-one
 
+```sh
+ansible-playbook -i inventory/all_in_one.yml all_in_one.yml --extra-vars "secret_env=dev"
+```
