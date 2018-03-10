@@ -5,7 +5,7 @@ Host web
   UserKnownHostsFile /dev/null
   StrictHostKeyChecking no
   PasswordAuthentication no
-  IdentityFile .vagrant/machines/db/virtualbox/private_key
+  IdentityFile .vagrant/machines/web/virtualbox/private_key
   IdentitiesOnly yes
   LogLevel FATAL
 
