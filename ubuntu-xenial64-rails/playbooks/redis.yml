@@ -3,7 +3,7 @@
   become: yes
   become_method: sudo
   vars_files:
-    - ".secrets/{{ secret_env }}.yml"
+    - "../.secrets/{{ secret_env }}.yml"
   vars:
     ansible_python_interpreter: /usr/bin/python3
     redis_bind: 127.0.0.1
@@ -11,5 +11,5 @@
     redis_verify_checksum: true
     redis_checksum: "sha256:1bba546d44fb40e1fd8be1a15e1a9cc6484bceeea0bbd52919eebc656661ecd1"
   roles:
-    - roles/apt
-    - galaxy/DavidWittman.redis
+    - ../roles/apt
+    - ../galaxy/DavidWittman.redis

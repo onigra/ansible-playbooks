@@ -3,7 +3,7 @@
   become: yes
   become_method: sudo
   vars_files:
-    - ".secrets/{{ secret_env }}.yml"
+    - "../.secrets/{{ secret_env }}.yml"
   vars:
     ansible_python_interpreter: /usr/bin/python3
     mysql_root_password: "{{ mysql.root_password }}"
@@ -17,6 +17,6 @@
         password: "{{ mysql.application_user_password }}"
         priv: "{{ mysql.application_database }}.*:ALL"
   roles:
-    - roles/apt
-    - roles/mysql-dependencies
-    - galaxy/geerlingguy.mysql
+    - ../roles/apt
+    - ../roles/mysql-dependencies
+    - ../galaxy/geerlingguy.mysql
