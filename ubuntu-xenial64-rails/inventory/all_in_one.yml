@@ -1,4 +1,4 @@
-web:
+all:
   hosts:
     vagrant-ubuntu:
   vars:
