@@ -1,0 +1,32 @@
+---
+- hosts: web
+  become: yes
+  become_method: sudo
+  vars_files:
+    - "../.secrets/{{ secret_env }}.yml"
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    rbenv:
+      env: system
+      version: v1.1.1
+      default_ruby: 2.4.2
+      rubies:
+        - version: 2.4.2
+    nodejs:
+      version: 9
+    git_install_from_source: true
+    git_install_from_source_force_update: true
+    git_version: 2.16.1
+    workspace: /tmp
+    chromedriver_version: 2.35
+  roles:
+    - ../roles/apt
+    - ../galaxy/geerlingguy.git
+    - ../roles/remove-git-source
+    - ../galaxy/zzet.rbenv
+    - ../roles/bundler
+    - ../roles/nodejs
+    - ../galaxy/ocha.yarn
+    - ../galaxy/chrome-driver
+    - ../roles/mysql-dependencies
+
