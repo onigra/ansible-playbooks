@@ -1,16 +1,13 @@
 ---
 - name: Add web and batch sudo alias
-  include: both_role.yml
-  tags:
-    - both_role
+  import_tasks: both_role.yml
+  when: type == 'both_role'
 
 - name: Add batch sudo alias
-  include: sidekiq.yml
-  tags:
-    - batch
+  import_tasks: sidekiq.yml
+  when: type == 'batch'
 
 - name: Add web sudo alias
-  include: unicorn.yml
-  tags:
-    - web
+  import_tasks: unicorn.yml
+  when: type == 'web'
 
