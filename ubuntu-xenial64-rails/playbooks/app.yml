@@ -57,6 +57,6 @@
     - ../roles/nginx
     - ../roles/unicorn
     - ../roles/sidekiq
-    - ../roles/sudoers
+    - { role: ../roles/sudoers, tags: ['both_role'] }
     - ../roles/environment-variables
 

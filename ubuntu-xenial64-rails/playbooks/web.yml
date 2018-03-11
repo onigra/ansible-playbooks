@@ -56,6 +56,6 @@
     - ../roles/geoip
     - ../roles/nginx
     - ../roles/unicorn
-    - ../roles/sudoers
+    - { role: ../roles/sudoers, tags: ['web'] }
     - ../roles/environment-variables
 

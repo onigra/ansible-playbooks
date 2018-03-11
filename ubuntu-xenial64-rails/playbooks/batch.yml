@@ -33,6 +33,6 @@
     - ../galaxy/nickjj.user
     - ../roles/application-deploy-path
     - ../roles/sidekiq
-    - ../roles/sudoers
+    - { role: ../roles/sudoers, tags: ['batch'] }
     - ../roles/environment-variables
 
