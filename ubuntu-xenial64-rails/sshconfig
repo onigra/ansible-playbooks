@@ -31,3 +31,13 @@ Host 192.168.33.12
   IdentitiesOnly yes
   LogLevel FATAL
 
+Host 192.168.33.13
+  HostName 192.168.33.13
+  User vagrant
+  Port 22
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile .vagrant/machines/batch/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL

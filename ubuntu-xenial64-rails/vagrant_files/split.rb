@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define :web do |web|
-    web.vm.box = "ubuntu/xenial64"
+    web.vm.box = "onigra/ubuntu-rails-web-batch-base"
     web.vm.hostname = "web"
     web.vm.network :forwarded_port, guest: 80, host: 8080
     web.vm.network :private_network, ip: "192.168.33.10"
@@ -22,6 +22,12 @@ Vagrant.configure("2") do |config|
     redis.vm.hostname = "redis"
     redis.vm.network :forwarded_port, guest: 6379, host: 16379
     redis.vm.network :private_network, ip: "192.168.33.12"
+  end
+
+  config.vm.define :batch do |batch|
+    batch.vm.box = "onigra/ubuntu-rails-web-batch-base"
+    batch.vm.hostname = "batch"
+    batch.vm.network :private_network, ip: "192.168.33.13"
   end
 
 end
