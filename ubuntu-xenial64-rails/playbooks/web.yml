@@ -53,9 +53,9 @@
     - ../roles/mysql-dependencies
     - ../galaxy/nickjj.user
     - ../roles/application-deploy-path
+    - ../roles/environment-variables
     - ../roles/geoip
     - ../roles/nginx
     - ../roles/unicorn
     - { role: ../roles/sudoers, tags: ['web'] }
-    - ../roles/environment-variables
 

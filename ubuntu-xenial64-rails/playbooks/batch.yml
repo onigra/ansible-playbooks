@@ -32,7 +32,7 @@
     - ../roles/mysql-dependencies
     - ../galaxy/nickjj.user
     - ../roles/application-deploy-path
+    - ../roles/environment-variables
     - ../roles/sidekiq
     - { role: ../roles/sudoers, tags: ['batch'] }
-    - ../roles/environment-variables
 

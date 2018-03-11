@@ -53,10 +53,10 @@
     - ../roles/mysql-dependencies
     - ../galaxy/nickjj.user
     - ../roles/application-deploy-path
+    - ../roles/environment-variables
     - ../roles/geoip
     - ../roles/nginx
     - ../roles/unicorn
     - ../roles/sidekiq
     - { role: ../roles/sudoers, tags: ['both_role'] }
-    - ../roles/environment-variables
 
