@@ -74,5 +74,5 @@
     - ../roles/nginx
     - ../roles/unicorn
     - ../roles/sidekiq
-    - { role: ../roles/sudoers, tags: ['both_role'] }
+    - { role: ../roles/sudoers, type: 'both_role' }
 

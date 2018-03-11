@@ -34,5 +34,5 @@
     - ../roles/application-deploy-path
     - ../roles/environment-variables
     - ../roles/sidekiq
-    - { role: ../roles/sudoers, tags: ['batch'] }
+    - { role: ../roles/sudoers, type: 'batch' }
 
