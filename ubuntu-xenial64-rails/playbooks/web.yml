@@ -49,7 +49,7 @@
     - ../roles/bundler
     - ../roles/nodejs
     - ../galaxy/ocha.yarn
-    - ../galaxy/chrome-driver
+    - ../galaxy/DrTom.chrome-driver
     - ../roles/mysql-dependencies
     - ../galaxy/nickjj.user
     - ../roles/application-deploy-path

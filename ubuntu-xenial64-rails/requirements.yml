@@ -5,5 +5,5 @@
 - src: nickjj.user
 - src: ocha.yarn
 - src: https://github.com/DrTom/ansible-role-chromedriver
-  name: chrome-driver
+  name: DrTom.chrome-driver
 
