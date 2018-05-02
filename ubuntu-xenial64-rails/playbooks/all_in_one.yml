@@ -33,7 +33,7 @@
     git_version: 2.16.1
     workspace: /tmp
     user_local_ssh_key_path: "{{ deploy.ssh_pubkey_path }}"
-    chromedriver_version: 2.35
+    chromedriver_version: 2.37
     nginx:
       version: 1.13.8
       configure_flags:
