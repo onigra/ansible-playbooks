@@ -6,4 +6,5 @@
 - src: ocha.yarn
 - src: https://github.com/DrTom/ansible-role-chromedriver
   name: DrTom.chrome-driver
+- src: cmprescott.chrome
 
