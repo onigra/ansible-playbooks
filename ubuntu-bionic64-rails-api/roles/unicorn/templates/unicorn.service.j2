@@ -1,0 +1,18 @@
+[Unit]
+Description=Unicorn Server
+
+[Service]
+WorkingDirectory=/var/www/{{ application.name }}/current
+PIDFile=/var/www/{{ application.name }}/current/tmp/pids/unicorn.pid
+User=deploy
+SyslogIdentifier=unicorn
+Restart=always
+Environment=RAILS_ENV={{ application.environment }}
+
+ExecStart=/usr/local/lib/ruby-{{ ruby_ignore_rbenv.ruby_version }}/bin/bundle exec unicorn -c /var/www/{{ application.name }}/current/config/unicorn/{{ application.environment }}.rb -E {{ application.environment }} -D
+ExecStop=/bin/kill -s QUIT $MAINPID
+ExecReload=/bin/kill -s USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+

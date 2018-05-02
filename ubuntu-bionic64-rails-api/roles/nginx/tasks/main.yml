@@ -1,0 +1,89 @@
+---
+- name: Check nginx already installed
+  stat:
+    path: /lib/systemd/system/nginx.service
+  register: nginx_stat_result
+
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - build-essential
+    - libpcre3
+    - libpcre3-dev
+    - libssl-dev
+    - libgd-dev
+  when:
+    - nginx_stat_result.stat.exists == False
+
+- name: Download and unpack nginx source
+  unarchive:
+    src: https://nginx.org/download/nginx-{{ nginx.version }}.tar.gz
+    dest: /tmp
+    owner: root
+    group: root
+    remote_src: yes
+  when:
+    - nginx_stat_result.stat.exists == False
+
+- name: Compile nginx
+  shell: >
+    ./configure {{ nginx.configure_flags | join(" ") }} &&
+    make &&
+    make install
+  args:
+    chdir: /tmp/nginx-{{ nginx.version }}
+  when:
+    - nginx_stat_result.stat.exists == False
+
+- name: Create nginx cache directory
+  file:
+    path: /var/cache/nginx/cache
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
+  when:
+    - nginx_stat_result.stat.exists == False
+
+- name: Create nginx cache directory
+  file:
+    path: /var/cache/nginx/tmp
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
+  when:
+    - nginx_stat_result.stat.exists == False
+
+- name: Upload systemd service file
+  copy:
+    src: nginx.service
+    dest: /lib/systemd/system/nginx.service
+    mode: 0644
+  when:
+    - nginx_stat_result.stat.exists == False
+
+- name: Upload nginx.conf
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    mode: 0644
+  when:
+    - nginx_stat_result.stat.exists == False
+
+- name: Register nginx as a service
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+  when:
+    - nginx_stat_result.stat.exists == False
+
+- name: Remove nginx source
+  file:
+    path: /tmp/nginx-{{ nginx.version }}
+    state: absent
+

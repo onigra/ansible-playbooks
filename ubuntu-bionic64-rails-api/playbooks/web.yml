@@ -1,0 +1,51 @@
+---
+- hosts: web
+  become: yes
+  become_method: sudo
+  vars_files:
+    - "../.secrets/{{ secret_env }}.yml"
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    ruby_ignore_rbenv:
+      ruby_version: 2.5.1
+      ruby_build_repo: https://github.com/rbenv/ruby-build.git
+      install_path: /usr/local/lib
+    git_install_from_source: true
+    git_install_from_source_force_update: true
+    git_version: 2.17.0
+    workspace: /tmp
+    user_local_ssh_key_path: "{{ deploy.ssh_pubkey_path }}"
+    nginx:
+      version: 1.13.12
+      configure_flags:
+        - "--user=www-data"
+        - "--group=www-data"
+        - "--prefix=/etc/nginx"
+        - "--sbin-path=/usr/sbin/nginx"
+        - "--conf-path=/etc/nginx/nginx.conf"
+        - "--error-log-path=/var/log/nginx/error.log"
+        - "--pid-path=/run/nginx.pid"
+        - "--lock-path=/run/nginx.lock"
+        - "--http-log-path=/var/log/nginx/access.log"
+        - "--with-http_realip_module"
+        - "--with-http_addition_module"
+        - "--with-http_image_filter_module"
+        - "--with-http_geoip_module"
+        - "--with-http_ssl_module"
+        - "--with-http_v2_module"
+        - "--with-http_gzip_static_module"
+        - "--with-http_gunzip_module"
+        - "--with-ipv6"
+  roles:
+    # - ../roles/apt
+    # - ../galaxy/geerlingguy.git
+    # - ../roles/remove-git-source
+    # - ../galaxy/onigra.ruby-ignore-rbenv
+    # - ../roles/bundler
+    # - ../galaxy/nickjj.user
+    # - ../roles/application-deploy-path
+    # - ../roles/geoip
+    # - ../roles/nginx
+    - ../roles/unicorn
+    # - { role: ../roles/sudoers, type: 'web' }
+

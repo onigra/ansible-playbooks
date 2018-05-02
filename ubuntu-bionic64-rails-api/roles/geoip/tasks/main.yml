@@ -1,0 +1,49 @@
+---
+- name: Check that the GeoIP directory exists
+  stat:
+    path: /usr/local/share/GeoIP
+  register: geoip_directory
+
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - geoip-database
+    - libgeoip-dev
+  when: geoip_directory.stat.exists == False
+
+- name: Create GeoIP directory
+  file:
+    path: /usr/local/share/GeoIP
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  when: geoip_directory.stat.exists == False
+
+- name: Download and GeoIP.dat.gz
+  get_url:
+    url: http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
+    dest: /usr/local/share/GeoIP/GeoIP.dat.gz
+  when: geoip_directory.stat.exists == False
+
+- name: Unpack GeoIP.dat
+  command: gunzip GeoIP.dat.gz
+  args:
+    chdir: /usr/local/share/GeoIP
+  when: geoip_directory.stat.exists == False
+
+- name: Download and GeoLiteCity.dat.gz
+  get_url:
+    url: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+    dest: /usr/local/share/GeoIP/GeoLiteCity.dat.gz
+  when: geoip_directory.stat.exists == False
+
+- name: Unpack GeoLiteCity.dat
+  command: gunzip GeoLiteCity.dat.gz
+  args:
+    chdir: /usr/local/share/GeoIP
+  when: geoip_directory.stat.exists == False
+

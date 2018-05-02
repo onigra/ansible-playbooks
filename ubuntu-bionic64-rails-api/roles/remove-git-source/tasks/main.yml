@@ -1,0 +1,10 @@
+---
+- name: Remove git source tar.gz
+  file:
+    path: /tmp/git-{{ git_version }}.tar.gz
+    state: absent
+
+- name: Remove git source
+  file:
+    path: /tmp/git-{{ git_version }}
+    state: absent
