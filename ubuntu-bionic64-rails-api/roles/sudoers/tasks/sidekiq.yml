@@ -1,0 +1,17 @@
+---
+- name: Add sudoers command aliases
+  blockinfile:
+    dest: /etc/sudoers.d/{{ application.deploy_user }}
+    insertbefore: BOF
+    content: |
+      Cmnd_Alias SIDEKIQ = /bin/systemctl start sidekiq.service, /bin/systemctl stop sidekiq.service, /bin/systemctl status sidekiq.service, /bin/systemctl is-active sidekiq.service
+
+- name: Edit deploy sudoers
+  lineinfile:
+    path: /etc/sudoers.d/{{ application.deploy_user }}
+    state: present
+    regexp: "{{ item.match }}"
+    line: "{{ item.line }}"
+  with_items:
+  - { match: 'deploy', line: '%deploy ALL=(ALL) NOPASSWD: SIDEKIQ' }
+

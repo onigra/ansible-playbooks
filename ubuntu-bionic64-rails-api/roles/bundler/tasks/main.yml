@@ -1,0 +1,8 @@
+---
+- name: Install bundler
+  gem:
+    name: bundler
+    state: latest
+    user_install: no
+    executable: /usr/local/lib/ruby-{{ ruby_ignore_rbenv.ruby_version }}/bin/gem
+

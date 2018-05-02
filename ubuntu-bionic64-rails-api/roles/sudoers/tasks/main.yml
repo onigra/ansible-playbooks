@@ -1,0 +1,9 @@
+---
+- name: Add batch sudo alias
+  import_tasks: sidekiq.yml
+  when: type == 'batch'
+
+- name: Add web sudo alias
+  import_tasks: unicorn.yml
+  when: type == 'web'
+

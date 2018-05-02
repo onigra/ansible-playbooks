@@ -1,0 +1,12 @@
+- name: Upload systemd service file
+  template:
+    src: unicorn.service.j2
+    dest: /lib/systemd/system/unicorn.service
+    mode: 0644
+
+- name: Register unicorn as a service
+  systemd:
+    name: unicorn
+    state: stopped
+    enabled: yes
+
