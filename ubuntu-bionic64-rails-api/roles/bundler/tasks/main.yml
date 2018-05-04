@@ -4,5 +4,5 @@
     name: bundler
     state: latest
     user_install: no
-    executable: /usr/local/lib/ruby-{{ ruby_ignore_rbenv.ruby_version }}/bin/gem
+    executable: {{ ruby_ignore_rbenv.install_path }}/ruby/bin/gem
 
