@@ -16,7 +16,7 @@
     git_install_from_source_force_update: true
     git_version: 2.16.1
     workspace: /tmp
-    chromedriver_version: 2.35
+    chromedriver_version: 2.37
   roles:
     - ../roles/apt
     - ../galaxy/geerlingguy.git
