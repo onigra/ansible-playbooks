@@ -37,15 +37,15 @@
         - "--with-http_gunzip_module"
         - "--with-ipv6"
   roles:
-    # - ../roles/apt
-    # - ../galaxy/geerlingguy.git
-    # - ../roles/remove-git-source
-    # - ../galaxy/onigra.ruby-ignore-rbenv
-    # - ../roles/bundler
-    # - ../galaxy/nickjj.user
-    # - ../roles/application-deploy-path
-    # - ../roles/geoip
-    # - ../roles/nginx
+    - ../roles/apt
+    - ../galaxy/geerlingguy.git
+    - ../roles/remove-git-source
+    - ../galaxy/onigra.ruby-ignore-rbenv
+    - ../roles/bundler
+    - ../galaxy/nickjj.user
+    - ../roles/application-deploy-path
+    - ../roles/geoip
+    - ../roles/nginx
     - ../roles/unicorn
-    # - { role: ../roles/sudoers, type: 'web' }
+    - { role: ../roles/sudoers, type: 'web' }
 
